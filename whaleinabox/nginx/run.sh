@@ -1,9 +1,15 @@
 #!/bin/bash
 set -euo pipefail
 
+# Configure nginx
+if [ ! -f "/etc/nginx/conf.d/default.conf" ]; then
+  mv /etc/nginx/conf.d/template.conf /etc/nginx/conf.d/default.conf
+  sed -i "s/DOMAIN/${DOMAIN}/g" /etc/nginx/conf.d/default.conf
+fi
+
 # Generate a self-signed certificate
 echo "Checking for an existing TLS certificate"
-if [[ ! -f /etc/certs/jupyterhub.key ]]; then
+if [ ! -f /etc/certs/jupyterhub.key ]; then
   echo "Generating a self-signed certificate..."
   touch /etc/certs/jupyterhub.key
   openssl req -x509 -newkey rsa:2048 -days 365 -nodes -batch \
