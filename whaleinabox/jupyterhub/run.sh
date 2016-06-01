@@ -11,4 +11,4 @@ if [ ! -f /etc/jupyterhub/cookie_secret ]; then
 fi
 
 echo "Initialization Complete - Staring JupyterHub"
-exec jupyterhub --no-ssl -f /srv/jupyterhub/jupyterhub_config.py
+exec jupyterhub -f /srv/jupyterhub/jupyterhub_config.py
