@@ -1,0 +1,1 @@
+FROM jupyterhub/whaleinabox-web
