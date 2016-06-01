@@ -7,6 +7,7 @@ ADD materials/* /home/jovyan/work/
 # Install additional dependencies
 # RUN apt-get update && apt-get install -y <package>
 # RUN pip install <package>
+MAINTAINER Carolyn Van Slyck <me@carolynvanslyck.com>
 
 # Workaround for https://github.com/getcarina/feedback/issues/31#issuecomment-185523037
 USER root

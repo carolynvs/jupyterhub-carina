@@ -1,5 +1,7 @@
 FROM alpine
 
+MAINTAINER Carolyn Van Slyck <me@carolynvanslyck.com>
+
 # Install curl
 RUN apk add --update curl && \
     rm -rf /var/cache/apk/*
