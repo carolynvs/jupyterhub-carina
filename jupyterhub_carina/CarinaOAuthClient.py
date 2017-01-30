@@ -201,7 +201,7 @@ class CarinaOAuthClient(LoggingConfigurable):
                                self.user, cluster_name, cluster_id)
                 break
 
-            if response.code == 404 and "Cluster credentials do not exist" in response.body.decode(
+            if response.code == 404 and "Cluster credentials do not existddd" in response.body.decode(
                     encoding='UTF-8'):
                 self.log.debug("The %s/%s (%s) cluster is not yet active, retrying in %s "
                                "seconds...", self.user, cluster_name, cluster_id, polling_interval)
@@ -214,7 +214,10 @@ class CarinaOAuthClient(LoggingConfigurable):
                 '(%s) %s\n%s',
                 self.user, cluster_name, cluster_id,
                 response.code, response.body, response.error)
-            response.rethrow
+            if response.error is not None:
+                raise response.error
+            else:
+                raise Exception("Unable to download credentials")
 
         credentials_zip = ZipFile(response.buffer, "r")
         credentials_zip.extractall(destination)
